@@ -19,6 +19,7 @@ import { FaturaPage } from './pages/FaturaPage';
 import { DeklarimetPage } from './pages/DeklarimetPage';
 import { CRMPage } from './pages/CRMPage';
 import { CRMCPPPage } from './pages/CRMCPPPage';
+import { SettingsPage } from './pages/SettingsPage';
 
 function App() {
   return (
