@@ -561,10 +561,12 @@ async def get_financa_analytics(current_user: User = Depends(require_admin)):
             "dite_negative": 0
         }
     
-    total_cash = sum(f.get('cash', 0) for f in financa_list)
-    total_banka = sum(f.get('banka', 0) for f in financa_list)
-    total_fb_ads = sum(f.get('fb_ads', 0) for f in financa_list)
-    gjendja_latest = financa_list[0].get('gjendja_fund_dite', 0)
+    # Vlerat e ditës më të fundit (jo totalet)
+    latest_entry = financa_list[0]
+    total_cash = latest_entry.get('cash', 0)
+    total_banka = latest_entry.get('banka', 0)
+    total_fb_ads = latest_entry.get('fb_ads', 0)
+    gjendja_latest = latest_entry.get('gjendja_fund_dite', 0)
     
     diferenca = 0
     if len(financa_list) > 1:
