@@ -12,15 +12,15 @@ import { BorxhePage } from './pages/BorxhePage';
 import { ShpenzimePage } from './pages/ShpenzimePage';
 import { FinancaDitorePage } from './pages/FinancaDitorePage';
 import { StockPage } from './pages/StockPage';
+import { BankaAccountsPage } from './pages/BankaAccountsPage';
+import { KursimePage } from './pages/KursimePage';
+import { KontabilistetPage } from './pages/KontabilistetPage';
 
 // Placeholder components for remaining pages
-const FaturaPage = () => <div className="text-white text-2xl">Fatura Page - Coming Soon</div>;
-const DeklarimetPage = () => <div className="text-white text-2xl">Deklarimet & Pagat Page - Coming Soon</div>;
-const CRMPage = () => <div className="text-white text-2xl">CRM Page - Coming Soon</div>;
-const CRMCPPPage = () => <div className="text-white text-2xl">CRM-CPP Page - Coming Soon</div>;
-const KursimePage = () => <div className="text-white text-2xl">Kursime Page - Coming Soon</div>;
-const KontabilistetPage = () => <div className="text-white text-2xl">Kontabilistët Page - Coming Soon</div>;
-const BankaAccountsPage = () => <div className="text-white text-2xl">Llogaritë Bankare Page - Coming Soon</div>;
+const FaturaPage = () => <div className="text-white text-2xl p-8">Fatura Page - Coming Soon</div>;
+const DeklarimetPage = () => <div className="text-white text-2xl p-8">Deklarimet & Pagat Page - Coming Soon</div>;
+const CRMPage = () => <div className="text-white text-2xl p-8">CRM Page - Coming Soon</div>;
+const CRMCPPPage = () => <div className="text-white text-2xl p-8">CRM-CPP Page - Coming Soon</div>;
 
 function App() {
   return (
