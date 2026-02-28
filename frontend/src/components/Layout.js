@@ -16,7 +16,8 @@ import {
   LogOut,
   Menu,
   X,
-  TrendingUp
+  TrendingUp,
+  Settings
 } from 'lucide-react';
 
 const NavItem = ({ icon: Icon, label, path, onClick }) => {
