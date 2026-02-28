@@ -78,6 +78,7 @@ export const Layout = () => {
     { icon: TrendingUp, label: 'CRM - CPP', path: '/crm-cpp' },
     { icon: PiggyBank, label: 'Kursime', path: '/kursime' },
     { icon: UserCog, label: 'Kontabilistët', path: '/kontabilistet' },
+    { icon: Settings, label: 'Settings', path: '/settings' },
   ];
 
   const handleLogout = () => {
