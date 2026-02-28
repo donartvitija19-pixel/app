@@ -237,12 +237,12 @@ export const ShpenzimePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label className="text-sm text-gray-600">Kategoria</Label>
-            <Select value={filterKategoria} onValueChange={setFilterKategoria}>
+            <Select value={filterKategoria || "all"} onValueChange={(val) => setFilterKategoria(val === "all" ? "" : val)}>
               <SelectTrigger className="bg-gray-50 border-gray-300 text-gray-900">
                 <SelectValue placeholder="Të gjitha" />
               </SelectTrigger>
               <SelectContent className="bg-gray-50 border-gray-300 text-gray-900">
-                <SelectItem value="">Të gjitha</SelectItem>
+                <SelectItem value="all">Të gjitha</SelectItem>
                 <SelectItem value="Familjare">Familjare</SelectItem>
                 <SelectItem value="Derivate">Derivate</SelectItem>
                 <SelectItem value="Borgje">Borgje</SelectItem>
