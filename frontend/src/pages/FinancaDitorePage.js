@@ -190,23 +190,23 @@ export const FinancaDitorePage = () => {
       {analytics && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           <div className="glass rounded-xl p-4">
-            <p className="text-xs text-gray-600 mb-1">Total Cash</p>
+            <p className="text-xs text-gray-600 mb-1">Cash (Ditore)</p>
             <p className="text-xl font-bold number-display text-[#6366f1]">{analytics.total_cash.toFixed(2)}€</p>
           </div>
           <div className="glass rounded-xl p-4">
-            <p className="text-xs text-gray-600 mb-1">Total Bankë</p>
+            <p className="text-xs text-gray-600 mb-1">Bankë (Ditore)</p>
             <p className="text-xl font-bold number-display text-[#6366f1]">{analytics.total_banka.toFixed(2)}€</p>
           </div>
           <div className="glass rounded-xl p-4">
-            <p className="text-xs text-gray-600 mb-1">Total FB Ads</p>
+            <p className="text-xs text-gray-600 mb-1">FB Ads (Ditore)</p>
             <p className="text-xl font-bold number-display text-[#6366f1]">{analytics.total_fb_ads.toFixed(2)}€</p>
           </div>
           <div className="glass rounded-xl p-4">
-            <p className="text-xs text-gray-600 mb-1">Gjendja Aktuale</p>
+            <p className="text-xs text-gray-600 mb-1">Gjendja e Ditës</p>
             <p className="text-xl font-bold number-display text-[#10b981]">{analytics.gjendja_latest.toFixed(2)}€</p>
           </div>
           <div className="glass rounded-xl p-4">
-            <p className="text-xs text-gray-600 mb-1">Diferenca Ditore</p>
+            <p className="text-xs text-gray-600 mb-1">Diferenca me Dje</p>
             <div className="flex items-center gap-2">
               {analytics.diferenca_dite >= 0 ? <TrendingUp size={16} className="text-[#10b981]" /> : <TrendingDown size={16} className="text-[#f43f5e]" />}
               <p className={`text-xl font-bold number-display ${analytics.diferenca_dite >= 0 ? 'text-[#10b981]' : 'text-[#f43f5e]'}`}>
