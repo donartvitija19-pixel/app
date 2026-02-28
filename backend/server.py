@@ -339,15 +339,18 @@ async def register(user_data: UserCreate, current_user: User = Depends(require_a
 
 @api_router.post("/auth/login", response_model=TokenResponse)
 async def login(credentials: UserLogin):
-    user_doc = await db.users.find_one({"email": credentials.email}, {"_id": 0})
+    user_doc = await db.users.find_one({"email": credentials.email})
     if not user_doc:
         raise HTTPException(status_code=401, detail="Email ose fjalëkalim i gabuar")
     
-    if not verify_password(credentials.password, user_doc['password_hash']):
+    if not verify_password(credentials.password, user_doc.get('password_hash', '')):
         raise HTTPException(status_code=401, detail="Email ose fjalëkalim i gabuar")
     
     access_token = create_access_token(data={"sub": user_doc['email']})
-    user = User(**user_doc)
+    
+    # Remove sensitive fields before creating User object
+    user_data = {k: v for k, v in user_doc.items() if k not in ['_id', 'password_hash']}
+    user = User(**user_data)
     
     return TokenResponse(
         access_token=access_token,
