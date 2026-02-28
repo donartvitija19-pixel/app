@@ -85,13 +85,13 @@ export const Layout = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: '#09090b' }}>
+    <div className="min-h-screen" style={{ background: '#f8f9fa' }}>
       {/* Mobile Menu Button */}
       <div className="lg:hidden fixed top-4 left-4 z-50">
         <Button
           onClick={() => setSidebarOpen(!sidebarOpen)}
           data-testid="mobile-menu-button"
-          className="bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/10"
+          className="bg-white hover:bg-gray-50 border border-gray-200 text-gray-900"
         >
           {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
         </Button>
@@ -99,20 +99,20 @@ export const Layout = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-72 glass border-r border-white/10 z-40 transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed top-0 left-0 h-full w-72 bg-white border-r border-gray-200 z-40 transition-transform duration-300 lg:translate-x-0 shadow-sm ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="p-6 border-b border-white/10">
+          <div className="p-6 border-b border-gray-200">
             <h1 className="text-3xl font-bold" style={{ fontFamily: 'Manrope, sans-serif', color: '#6366f1' }}>
               AVALANT
             </h1>
-            <p className="text-sm text-zinc-400 mt-1">Manager</p>
-            <div className="mt-3 px-3 py-2 rounded-lg bg-white/5 border border-white/10">
-              <p className="text-xs text-zinc-400">Përdorues</p>
-              <p className="text-sm font-medium text-white">{user.emri} {user.mbiemri}</p>
+            <p className="text-sm text-gray-500 mt-1">Manager</p>
+            <div className="mt-3 px-3 py-2 rounded-lg bg-gray-50 border border-gray-200">
+              <p className="text-xs text-gray-500">Përdorues</p>
+              <p className="text-sm font-medium text-gray-900">{user.emri} {user.mbiemri}</p>
               <p className="text-xs text-[#6366f1] capitalize">{user.role}</p>
             </div>
           </div>
@@ -154,11 +154,11 @@ export const Layout = () => {
           </nav>
 
           {/* Logout */}
-          <div className="p-4 border-t border-white/10">
+          <div className="p-4 border-t border-gray-200">
             <Button
               onClick={handleLogout}
               data-testid="logout-button"
-              className="w-full flex items-center gap-3 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20"
+              className="w-full flex items-center gap-3 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200"
             >
               <LogOut size={20} />
               <span>Dil</span>
@@ -177,7 +177,7 @@ export const Layout = () => {
       {/* Mobile Overlay */}
       {sidebarOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-30"
+          className="lg:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-30"
           onClick={() => setSidebarOpen(false)}
         />
       )}
