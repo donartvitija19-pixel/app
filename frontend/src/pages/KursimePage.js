@@ -108,14 +108,14 @@ export const KursimePage = () => {
     setEditingKursim(null);
   };
 
-  if (loading) return <div className="text-white">Duke ngarkuar...</div>;
+  if (loading) return <div className="text-gray-900">Duke ngarkuar...</div>;
 
   return (
     <div className="space-y-6" data-testid="kursime-page">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
           <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>Kursime</h1>
-          <p className="text-zinc-400">Tracking i kursimeve personale</p>
+          <p className="text-gray-600">Tracking i kursimeve personale</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={(open) => { setIsDialogOpen(open); if (!open) resetForm(); }}>
           <DialogTrigger asChild>
@@ -124,7 +124,7 @@ export const KursimePage = () => {
               Shto Kursim
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-zinc-900 border-zinc-800 text-white">
+          <DialogContent className="bg-white border-gray-200 text-gray-900">
             <DialogHeader>
               <DialogTitle>{editingKursim ? 'Përditëso Kursimin' : 'Shto Kursim të Ri'}</DialogTitle>
             </DialogHeader>
@@ -136,7 +136,7 @@ export const KursimePage = () => {
                   onChange={(e) => setFormData({...formData, qellimi: e.target.value})}
                   required
                   data-testid="kursim-qellimi-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                   placeholder="p.sh. Blerje Veture, Udhëtim, etj."
                 />
               </div>
@@ -149,7 +149,7 @@ export const KursimePage = () => {
                   onChange={(e) => setFormData({...formData, shuma_target: e.target.value})}
                   required
                   data-testid="kursim-target-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <div className="space-y-2">
@@ -160,7 +160,7 @@ export const KursimePage = () => {
                   value={formData.shuma_aktuale}
                   onChange={(e) => setFormData({...formData, shuma_aktuale: e.target.value})}
                   data-testid="kursim-aktual-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <Button type="submit" data-testid="kursim-submit-button" className="w-full bg-[#6366f1] hover:bg-[#5558e3]">
@@ -189,8 +189,8 @@ export const KursimePage = () => {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={() => handleEdit(kursim)} data-testid={`edit-kursim-${kursim.id}`} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
-                    <Pencil size={16} className="text-zinc-400" />
+                  <button onClick={() => handleEdit(kursim)} data-testid={`edit-kursim-${kursim.id}`} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <Pencil size={16} className="text-gray-600" />
                   </button>
                   <button onClick={() => handleDelete(kursim.id)} data-testid={`delete-kursim-${kursim.id}`} className="p-2 hover:bg-red-500/10 rounded-lg transition-colors">
                     <Trash2 size={16} className="text-red-400" />
@@ -200,15 +200,15 @@ export const KursimePage = () => {
 
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-zinc-400">Target</span>
-                  <span className="number-display font-bold text-white">{parseFloat(kursim.shuma_target).toFixed(2)}€</span>
+                  <span className="text-gray-600">Target</span>
+                  <span className="number-display font-bold text-gray-900">{parseFloat(kursim.shuma_target).toFixed(2)}€</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-zinc-400">Aktuale</span>
+                  <span className="text-gray-600">Aktuale</span>
                   <span className="number-display font-bold text-[#10b981]">{parseFloat(kursim.shuma_aktuale).toFixed(2)}€</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-zinc-400">Mbetet</span>
+                  <span className="text-gray-600">Mbetet</span>
                   <span className="number-display font-bold text-[#f43f5e]">
                     {Math.max(0, parseFloat(kursim.shuma_target) - parseFloat(kursim.shuma_aktuale)).toFixed(2)}€
                   </span>
@@ -216,7 +216,7 @@ export const KursimePage = () => {
               </div>
 
               <div>
-                <div className="flex justify-between text-xs text-zinc-400 mb-2">
+                <div className="flex justify-between text-xs text-gray-600 mb-2">
                   <span>Progress</span>
                   <span>{Math.min(100, progress).toFixed(1)}%</span>
                 </div>
@@ -230,7 +230,7 @@ export const KursimePage = () => {
                     setIsDepozitimDialogOpen(true);
                   }}
                   data-testid={`depozitim-button-${kursim.id}`}
-                  className="flex-1 bg-[#10b981] hover:bg-[#0f9c72] text-white gap-2"
+                  className="flex-1 bg-[#10b981] hover:bg-[#0f9c72] text-gray-900 gap-2"
                 >
                   <TrendingUp size={16} />
                   Shto Depozitim
@@ -238,7 +238,7 @@ export const KursimePage = () => {
                 <Button
                   onClick={() => handleDepozitim('s_kam_depozituar')}
                   variant="outline"
-                  className="flex-1 border-zinc-700 text-red-400 hover:bg-red-500/10"
+                  className="flex-1 border-gray-300 text-red-400 hover:bg-red-500/10"
                 >
                   <X size={16} className="mr-2" />
                   S'kam depozituar
@@ -251,13 +251,13 @@ export const KursimePage = () => {
 
       {kursime.length === 0 && (
         <div className="glass rounded-xl p-12 text-center">
-          <PiggyBank size={48} className="text-zinc-600 mx-auto mb-4" />
-          <p className="text-zinc-400">Nuk ka kursime të regjistruara</p>
+          <PiggyBank size={48} className="text-gray-400 mx-auto mb-4" />
+          <p className="text-gray-600">Nuk ka kursime të regjistruara</p>
         </div>
       )}
 
       <Dialog open={isDepozitimDialogOpen} onOpenChange={setIsDepozitimDialogOpen}>
-        <DialogContent className="bg-zinc-900 border-zinc-800 text-white">
+        <DialogContent className="bg-white border-gray-200 text-gray-900">
           <DialogHeader>
             <DialogTitle>Shto Depozitim</DialogTitle>
           </DialogHeader>
@@ -271,7 +271,7 @@ export const KursimePage = () => {
                 onChange={(e) => setDepozitimVlera(e.target.value)}
                 required
                 data-testid="depozitim-vlera-input"
-                className="bg-zinc-800 border-zinc-700 text-white"
+                className="bg-gray-50 border-gray-300 text-gray-900"
               />
             </div>
             <Button

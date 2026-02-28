@@ -91,14 +91,14 @@ export const StockPage = () => {
     return '#10b981';
   };
 
-  if (loading) return <div className="text-white">Duke ngarkuar...</div>;
+  if (loading) return <div className="text-gray-900">Duke ngarkuar...</div>;
 
   return (
     <div className="space-y-6" data-testid="stock-page">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>Stock / Inventari</h1>
-          <p className="text-zinc-400">Menaxhimi i produkteve në magazinë</p>
+          <p className="text-gray-600">Menaxhimi i produkteve në magazinë</p>
         </div>
         {isAdmin && (
           <Dialog open={isDialogOpen} onOpenChange={(open) => { setIsDialogOpen(open); if (!open) resetForm(); }}>
@@ -108,7 +108,7 @@ export const StockPage = () => {
                 Shto Produkt
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-zinc-900 border-zinc-800 text-white">
+            <DialogContent className="bg-white border-gray-200 text-gray-900">
               <DialogHeader>
                 <DialogTitle>{editingStock ? 'Përditëso Produktin' : 'Shto Produkt të Ri'}</DialogTitle>
               </DialogHeader>
@@ -120,7 +120,7 @@ export const StockPage = () => {
                     onChange={(e) => setFormData({...formData, emri_produktit: e.target.value})}
                     required
                     data-testid="stock-emri-input"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-gray-50 border-gray-300 text-gray-900"
                   />
                 </div>
                 <div className="space-y-2">
@@ -131,7 +131,7 @@ export const StockPage = () => {
                     required
                     disabled={!!editingStock}
                     data-testid="stock-sku-input"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-gray-50 border-gray-300 text-gray-900"
                   />
                 </div>
                 <div className="space-y-2">
@@ -142,7 +142,7 @@ export const StockPage = () => {
                     onChange={(e) => setFormData({...formData, sasia: e.target.value})}
                     required
                     data-testid="stock-sasia-input"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-gray-50 border-gray-300 text-gray-900"
                   />
                 </div>
                 <Button type="submit" data-testid="stock-submit-button" className="w-full bg-[#6366f1] hover:bg-[#5558e3]">
@@ -157,28 +157,28 @@ export const StockPage = () => {
       <div className="glass rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-white/5 border-b border-white/10">
+            <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="text-left p-4 text-sm font-semibold text-zinc-300">Produkti</th>
-                <th className="text-left p-4 text-sm font-semibold text-zinc-300">SKU</th>
-                <th className="text-right p-4 text-sm font-semibold text-zinc-300">Sasia</th>
-                {isAdmin && <th className="text-center p-4 text-sm font-semibold text-zinc-300">Veprime</th>}
+                <th className="text-left p-4 text-sm font-semibold text-gray-700">Produkti</th>
+                <th className="text-left p-4 text-sm font-semibold text-gray-700">SKU</th>
+                <th className="text-right p-4 text-sm font-semibold text-gray-700">Sasia</th>
+                {isAdmin && <th className="text-center p-4 text-sm font-semibold text-gray-700">Veprime</th>}
               </tr>
             </thead>
             <tbody>
               {stock.map((item) => {
                 const color = getStockColor(item.sasia);
                 return (
-                  <tr key={item.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                  <tr key={item.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                     <td className="p-4">
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg" style={{ background: `${color}20` }}>
                           <Package size={20} style={{ color }} />
                         </div>
-                        <span className="text-white font-medium">{item.emri_produktit}</span>
+                        <span className="text-gray-900 font-medium">{item.emri_produktit}</span>
                       </div>
                     </td>
-                    <td className="p-4 text-zinc-400 font-mono text-sm">{item.sku}</td>
+                    <td className="p-4 text-gray-600 font-mono text-sm">{item.sku}</td>
                     <td className="p-4 text-right">
                       <span className="px-3 py-1 rounded-full text-sm font-bold number-display" style={{ background: `${color}20`, color }}>
                         {item.sasia}
@@ -187,8 +187,8 @@ export const StockPage = () => {
                     {isAdmin && (
                       <td className="p-4">
                         <div className="flex justify-center gap-2">
-                          <button onClick={() => handleEdit(item)} data-testid={`edit-stock-${item.id}`} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
-                            <Pencil size={16} className="text-zinc-400" />
+                          <button onClick={() => handleEdit(item)} data-testid={`edit-stock-${item.id}`} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                            <Pencil size={16} className="text-gray-600" />
                           </button>
                           <button onClick={() => handleDelete(item.id)} data-testid={`delete-stock-${item.id}`} className="p-2 hover:bg-red-500/10 rounded-lg transition-colors">
                             <Trash2 size={16} className="text-red-400" />
@@ -203,7 +203,7 @@ export const StockPage = () => {
           </table>
         </div>
         {stock.length === 0 && (
-          <div className="p-12 text-center text-zinc-400">
+          <div className="p-12 text-center text-gray-600">
             Nuk ka produkte në stock
           </div>
         )}

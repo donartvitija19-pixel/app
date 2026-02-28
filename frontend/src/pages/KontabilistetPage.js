@@ -67,14 +67,14 @@ export const KontabilistetPage = () => {
     setFormData({ emri: '', mbiemri: '', email: '', password: '' });
   };
 
-  if (loading) return <div className="text-white">Duke ngarkuar...</div>;
+  if (loading) return <div className="text-gray-900">Duke ngarkuar...</div>;
 
   return (
     <div className="space-y-6" data-testid="kontabilistet-page">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
           <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>Kontabilistët</h1>
-          <p className="text-zinc-400">Menaxhimi i përdoruesve kontabilist</p>
+          <p className="text-gray-600">Menaxhimi i përdoruesve kontabilist</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={(open) => { setIsDialogOpen(open); if (!open) resetForm(); }}>
           <DialogTrigger asChild>
@@ -83,7 +83,7 @@ export const KontabilistetPage = () => {
               Shto Kontabilist
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-zinc-900 border-zinc-800 text-white">
+          <DialogContent className="bg-white border-gray-200 text-gray-900">
             <DialogHeader>
               <DialogTitle>Shto Kontabilist të Ri</DialogTitle>
             </DialogHeader>
@@ -95,7 +95,7 @@ export const KontabilistetPage = () => {
                   onChange={(e) => setFormData({...formData, emri: e.target.value})}
                   required
                   data-testid="kontabilist-emri-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <div className="space-y-2">
@@ -105,7 +105,7 @@ export const KontabilistetPage = () => {
                   onChange={(e) => setFormData({...formData, mbiemri: e.target.value})}
                   required
                   data-testid="kontabilist-mbiemri-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <div className="space-y-2">
@@ -116,7 +116,7 @@ export const KontabilistetPage = () => {
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
                   required
                   data-testid="kontabilist-email-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <div className="space-y-2">
@@ -127,7 +127,7 @@ export const KontabilistetPage = () => {
                   onChange={(e) => setFormData({...formData, password: e.target.value})}
                   required
                   data-testid="kontabilist-password-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <Button type="submit" data-testid="kontabilist-submit-button" className="w-full bg-[#6366f1] hover:bg-[#5558e3]">
@@ -141,28 +141,28 @@ export const KontabilistetPage = () => {
       <div className="glass rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-white/5 border-b border-white/10">
+            <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="text-left p-4 text-sm font-semibold text-zinc-300">Emri</th>
-                <th className="text-left p-4 text-sm font-semibold text-zinc-300">Mbiemri</th>
-                <th className="text-left p-4 text-sm font-semibold text-zinc-300">Email</th>
-                <th className="text-left p-4 text-sm font-semibold text-zinc-300">Roli</th>
-                <th className="text-center p-4 text-sm font-semibold text-zinc-300">Veprime</th>
+                <th className="text-left p-4 text-sm font-semibold text-gray-700">Emri</th>
+                <th className="text-left p-4 text-sm font-semibold text-gray-700">Mbiemri</th>
+                <th className="text-left p-4 text-sm font-semibold text-gray-700">Email</th>
+                <th className="text-left p-4 text-sm font-semibold text-gray-700">Roli</th>
+                <th className="text-center p-4 text-sm font-semibold text-gray-700">Veprime</th>
               </tr>
             </thead>
             <tbody>
               {kontabilistet.map((kontabilist) => (
-                <tr key={kontabilist.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <tr key={kontabilist.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                   <td className="p-4">
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-lg bg-[#6366f1]/20">
                         <UserCog size={20} className="text-[#6366f1]" />
                       </div>
-                      <span className="text-white font-medium">{kontabilist.emri}</span>
+                      <span className="text-gray-900 font-medium">{kontabilist.emri}</span>
                     </div>
                   </td>
-                  <td className="p-4 text-white">{kontabilist.mbiemri}</td>
-                  <td className="p-4 text-zinc-400">{kontabilist.email}</td>
+                  <td className="p-4 text-gray-900">{kontabilist.mbiemri}</td>
+                  <td className="p-4 text-gray-600">{kontabilist.email}</td>
                   <td className="p-4">
                     <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-400">
                       {kontabilist.role}
@@ -181,7 +181,7 @@ export const KontabilistetPage = () => {
           </table>
         </div>
         {kontabilistet.length === 0 && (
-          <div className="p-12 text-center text-zinc-400">
+          <div className="p-12 text-center text-gray-600">
             Nuk ka kontabilistë të regjistruar
           </div>
         )}

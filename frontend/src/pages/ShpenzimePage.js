@@ -130,17 +130,17 @@ export const ShpenzimePage = () => {
     setEditingShpenzim(null);
   };
 
-  if (loading) return <div className="text-white">Duke ngarkuar...</div>;
+  if (loading) return <div className="text-gray-900">Duke ngarkuar...</div>;
 
   return (
     <div className="space-y-6" data-testid="shpenzime-page">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
           <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>Shpenzime</h1>
-          <p className="text-zinc-400">Tracking i të gjitha daljeve financiare</p>
+          <p className="text-gray-600">Tracking i të gjitha daljeve financiare</p>
         </div>
         <div className="flex gap-2">
-          <Button onClick={handleExport} variant="outline" className="border-zinc-700" data-testid="export-shpenzime-button">
+          <Button onClick={handleExport} variant="outline" className="border-gray-300" data-testid="export-shpenzime-button">
             <Download size={16} className="mr-2" />
             Eksporto CSV
           </Button>
@@ -151,7 +151,7 @@ export const ShpenzimePage = () => {
                 Shto Shpenzim
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-zinc-900 border-zinc-800 text-white max-w-md">
+            <DialogContent className="bg-white border-gray-200 text-gray-900 max-w-md">
               <DialogHeader>
                 <DialogTitle>{editingShpenzim ? 'Përditëso Shpenzimin' : 'Shto Shpenzim të Ri'}</DialogTitle>
               </DialogHeader>
@@ -159,10 +159,10 @@ export const ShpenzimePage = () => {
                 <div className="space-y-2">
                   <Label>Kategoria</Label>
                   <Select value={formData.kategoria} onValueChange={(value) => setFormData({...formData, kategoria: value})}>
-                    <SelectTrigger data-testid="shpenzim-kategoria-select" className="bg-zinc-800 border-zinc-700 text-white">
+                    <SelectTrigger data-testid="shpenzim-kategoria-select" className="bg-gray-50 border-gray-300 text-gray-900">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-zinc-800 border-zinc-700 text-white">
+                    <SelectContent className="bg-gray-50 border-gray-300 text-gray-900">
                       <SelectItem value="Familjare">Familjare</SelectItem>
                       <SelectItem value="Derivate">Derivate</SelectItem>
                       <SelectItem value="Borgje">Borgje</SelectItem>
@@ -175,10 +175,10 @@ export const ShpenzimePage = () => {
                   <div className="space-y-2">
                     <Label>Borxhi</Label>
                     <Select value={formData.borxh_id} onValueChange={(value) => setFormData({...formData, borxh_id: value})}>
-                      <SelectTrigger className="bg-zinc-800 border-zinc-700 text-white">
+                      <SelectTrigger className="bg-gray-50 border-gray-300 text-gray-900">
                         <SelectValue placeholder="Zgjidhni borxhin" />
                       </SelectTrigger>
-                      <SelectContent className="bg-zinc-800 border-zinc-700 text-white">
+                      <SelectContent className="bg-gray-50 border-gray-300 text-gray-900">
                         {borxhe.map(b => (
                           <SelectItem key={b.id} value={b.id}>{b.emri}</SelectItem>
                         ))}
@@ -193,7 +193,7 @@ export const ShpenzimePage = () => {
                     onChange={(e) => setFormData({...formData, pershkrimi: e.target.value})}
                     required
                     data-testid="shpenzim-pershkrimi-input"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-gray-50 border-gray-300 text-gray-900"
                   />
                 </div>
                 <div className="space-y-2">
@@ -205,7 +205,7 @@ export const ShpenzimePage = () => {
                     onChange={(e) => setFormData({...formData, shuma: e.target.value})}
                     required
                     data-testid="shpenzim-shuma-input"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-gray-50 border-gray-300 text-gray-900"
                   />
                 </div>
                 <div className="space-y-2">
@@ -216,7 +216,7 @@ export const ShpenzimePage = () => {
                     onChange={(e) => setFormData({...formData, data: e.target.value})}
                     required
                     data-testid="shpenzim-data-input"
-                    className="bg-zinc-800 border-zinc-700 text-white"
+                    className="bg-gray-50 border-gray-300 text-gray-900"
                   />
                 </div>
                 <Button type="submit" data-testid="shpenzim-submit-button" className="w-full bg-[#6366f1] hover:bg-[#5558e3]">
@@ -231,17 +231,17 @@ export const ShpenzimePage = () => {
       {/* Filters */}
       <div className="glass rounded-xl p-4">
         <div className="flex items-center gap-2 mb-3">
-          <Filter size={16} className="text-zinc-400" />
-          <span className="text-sm font-semibold text-zinc-300">Filtrat</span>
+          <Filter size={16} className="text-gray-600" />
+          <span className="text-sm font-semibold text-gray-700">Filtrat</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label className="text-sm text-zinc-400">Kategoria</Label>
+            <Label className="text-sm text-gray-600">Kategoria</Label>
             <Select value={filterKategoria} onValueChange={setFilterKategoria}>
-              <SelectTrigger className="bg-zinc-800 border-zinc-700 text-white">
+              <SelectTrigger className="bg-gray-50 border-gray-300 text-gray-900">
                 <SelectValue placeholder="Të gjitha" />
               </SelectTrigger>
-              <SelectContent className="bg-zinc-800 border-zinc-700 text-white">
+              <SelectContent className="bg-gray-50 border-gray-300 text-gray-900">
                 <SelectItem value="">Të gjitha</SelectItem>
                 <SelectItem value="Familjare">Familjare</SelectItem>
                 <SelectItem value="Derivate">Derivate</SelectItem>
@@ -252,12 +252,12 @@ export const ShpenzimePage = () => {
             </Select>
           </div>
           <div className="space-y-2">
-            <Label className="text-sm text-zinc-400">Periudha (YYYY-MM)</Label>
+            <Label className="text-sm text-gray-600">Periudha (YYYY-MM)</Label>
             <Input
               type="month"
               value={filterData}
               onChange={(e) => setFilterData(e.target.value)}
-              className="bg-zinc-800 border-zinc-700 text-white"
+              className="bg-gray-50 border-gray-300 text-gray-900"
             />
           </div>
         </div>
@@ -267,19 +267,19 @@ export const ShpenzimePage = () => {
       <div className="glass rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-white/5 border-b border-white/10">
+            <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="text-left p-4 text-sm font-semibold text-zinc-300">Data</th>
-                <th className="text-left p-4 text-sm font-semibold text-zinc-300">Kategoria</th>
-                <th className="text-left p-4 text-sm font-semibold text-zinc-300">Përshkrimi</th>
-                <th className="text-right p-4 text-sm font-semibold text-zinc-300">Shuma</th>
-                <th className="text-center p-4 text-sm font-semibold text-zinc-300">Veprime</th>
+                <th className="text-left p-4 text-sm font-semibold text-gray-700">Data</th>
+                <th className="text-left p-4 text-sm font-semibold text-gray-700">Kategoria</th>
+                <th className="text-left p-4 text-sm font-semibold text-gray-700">Përshkrimi</th>
+                <th className="text-right p-4 text-sm font-semibold text-gray-700">Shuma</th>
+                <th className="text-center p-4 text-sm font-semibold text-gray-700">Veprime</th>
               </tr>
             </thead>
             <tbody>
               {shpenzime.map((shpenzim) => (
-                <tr key={shpenzim.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="p-4 text-white">{shpenzim.data}</td>
+                <tr key={shpenzim.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                  <td className="p-4 text-gray-900">{shpenzim.data}</td>
                   <td className="p-4">
                     <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
                       shpenzim.kategoria === 'Shpenzim i Papritur' ? 'bg-red-500/20 text-red-400' :
@@ -289,12 +289,12 @@ export const ShpenzimePage = () => {
                       {shpenzim.kategoria}
                     </span>
                   </td>
-                  <td className="p-4 text-zinc-300">{shpenzim.pershkrimi}</td>
+                  <td className="p-4 text-gray-700">{shpenzim.pershkrimi}</td>
                   <td className="p-4 text-right number-display font-bold text-[#f43f5e]">{parseFloat(shpenzim.shuma).toFixed(2)}€</td>
                   <td className="p-4">
                     <div className="flex justify-center gap-2">
-                      <button onClick={() => handleEdit(shpenzim)} data-testid={`edit-shpenzim-${shpenzim.id}`} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
-                        <Pencil size={16} className="text-zinc-400" />
+                      <button onClick={() => handleEdit(shpenzim)} data-testid={`edit-shpenzim-${shpenzim.id}`} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                        <Pencil size={16} className="text-gray-600" />
                       </button>
                       <button onClick={() => handleDelete(shpenzim.id)} data-testid={`delete-shpenzim-${shpenzim.id}`} className="p-2 hover:bg-red-500/10 rounded-lg transition-colors">
                         <Trash2 size={16} className="text-red-400" />
@@ -307,7 +307,7 @@ export const ShpenzimePage = () => {
           </table>
         </div>
         {shpenzime.length === 0 && (
-          <div className="p-12 text-center text-zinc-400">
+          <div className="p-12 text-center text-gray-600">
             Nuk ka shpenzime të regjistruara
           </div>
         )}

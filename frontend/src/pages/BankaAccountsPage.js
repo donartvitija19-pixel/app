@@ -81,7 +81,7 @@ export const BankaAccountsPage = () => {
     setEditingAccount(null);
   };
 
-  if (loading) return <div className="text-white">Duke ngarkuar...</div>;
+  if (loading) return <div className="text-gray-900">Duke ngarkuar...</div>;
 
   const totalBilanci = accounts.reduce((sum, acc) => sum + parseFloat(acc.bilanci || 0), 0);
 
@@ -90,7 +90,7 @@ export const BankaAccountsPage = () => {
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
           <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>Llogaritë Bankare</h1>
-          <p className="text-zinc-400">Menaxhimi i llogarive bankare</p>
+          <p className="text-gray-600">Menaxhimi i llogarive bankare</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={(open) => { setIsDialogOpen(open); if (!open) resetForm(); }}>
           <DialogTrigger asChild>
@@ -99,7 +99,7 @@ export const BankaAccountsPage = () => {
               Shto Llogari
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-zinc-900 border-zinc-800 text-white">
+          <DialogContent className="bg-white border-gray-200 text-gray-900">
             <DialogHeader>
               <DialogTitle>{editingAccount ? 'Përditëso Llogarinë' : 'Shto Llogari të Re'}</DialogTitle>
             </DialogHeader>
@@ -111,7 +111,7 @@ export const BankaAccountsPage = () => {
                   onChange={(e) => setFormData({...formData, emri_bankes: e.target.value})}
                   required
                   data-testid="account-emri-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                   placeholder="p.sh. BKT, ProCredit, Raiffeisen"
                 />
               </div>
@@ -124,7 +124,7 @@ export const BankaAccountsPage = () => {
                   onChange={(e) => setFormData({...formData, bilanci: e.target.value})}
                   required
                   data-testid="account-bilanci-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <Button type="submit" data-testid="account-submit-button" className="w-full bg-[#6366f1] hover:bg-[#5558e3]">
@@ -138,7 +138,7 @@ export const BankaAccountsPage = () => {
       <div className="glass rounded-xl p-6">
         <div className="flex items-center gap-3 mb-2">
           <Landmark size={24} className="text-[#6366f1]" />
-          <p className="text-sm text-zinc-400">Totali i Llogarive</p>
+          <p className="text-sm text-gray-600">Totali i Llogarive</p>
         </div>
         <p className="text-4xl font-bold number-display text-[#6366f1]">
           {totalBilanci.toLocaleString('en-US', { minimumFractionDigits: 2 })}€
@@ -155,12 +155,12 @@ export const BankaAccountsPage = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">{account.emri_bankes}</h3>
-                  <p className="text-xs text-zinc-500">Llogari Bankare</p>
+                  <p className="text-xs text-gray-500">Llogari Bankare</p>
                 </div>
               </div>
               <div className="flex gap-2">
-                <button onClick={() => handleEdit(account)} data-testid={`edit-account-${account.id}`} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
-                  <Pencil size={16} className="text-zinc-400" />
+                <button onClick={() => handleEdit(account)} data-testid={`edit-account-${account.id}`} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                  <Pencil size={16} className="text-gray-600" />
                 </button>
                 <button onClick={() => handleDelete(account.id)} data-testid={`delete-account-${account.id}`} className="p-2 hover:bg-red-500/10 rounded-lg transition-colors">
                   <Trash2 size={16} className="text-red-400" />
@@ -168,8 +168,8 @@ export const BankaAccountsPage = () => {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/10">
-              <p className="text-xs text-zinc-400 mb-2">Bilanci Aktual</p>
+            <div className="pt-4 border-t border-gray-200">
+              <p className="text-xs text-gray-600 mb-2">Bilanci Aktual</p>
               <p className="text-3xl font-bold number-display text-[#10b981]">
                 {parseFloat(account.bilanci).toLocaleString('en-US', { minimumFractionDigits: 2 })}€
               </p>
@@ -180,8 +180,8 @@ export const BankaAccountsPage = () => {
 
       {accounts.length === 0 && (
         <div className="glass rounded-xl p-12 text-center">
-          <Landmark size={48} className="text-zinc-600 mx-auto mb-4" />
-          <p className="text-zinc-400">Nuk ka llogari bankare të regjistruara</p>
+          <Landmark size={48} className="text-gray-400 mx-auto mb-4" />
+          <p className="text-gray-600">Nuk ka llogari bankare të regjistruara</p>
         </div>
       )}
     </div>

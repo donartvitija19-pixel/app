@@ -107,14 +107,14 @@ export const BorxhePage = () => {
     setEditingBorxh(null);
   };
 
-  if (loading) return <div className="text-white">Duke ngarkuar...</div>;
+  if (loading) return <div className="text-gray-900">Duke ngarkuar...</div>;
 
   return (
     <div className="space-y-6" data-testid="borxhe-page">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>Borxhe</h1>
-          <p className="text-zinc-400">Menaxhimi i obligimeve financiare</p>
+          <p className="text-gray-600">Menaxhimi i obligimeve financiare</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={(open) => {
           setIsDialogOpen(open);
@@ -126,7 +126,7 @@ export const BorxhePage = () => {
               Shto Borxh
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-zinc-900 border-zinc-800 text-white">
+          <DialogContent className="bg-white border-gray-200 text-gray-900">
             <DialogHeader>
               <DialogTitle>{editingBorxh ? 'Përditëso Borxhin' : 'Shto Borxh të Ri'}</DialogTitle>
             </DialogHeader>
@@ -138,7 +138,7 @@ export const BorxhePage = () => {
                   onChange={(e) => setFormData({...formData, emri: e.target.value})}
                   required
                   data-testid="borxh-emri-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <div className="space-y-2">
@@ -150,7 +150,7 @@ export const BorxhePage = () => {
                   onChange={(e) => setFormData({...formData, shuma_totale: e.target.value})}
                   required
                   data-testid="borxh-shuma-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <div className="space-y-2">
@@ -161,16 +161,16 @@ export const BorxhePage = () => {
                   onChange={(e) => setFormData({...formData, data_kestit: e.target.value})}
                   required
                   data-testid="borxh-data-input"
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-gray-50 border-gray-300 text-gray-900"
                 />
               </div>
               <div className="space-y-2">
                 <Label>Tipi</Label>
                 <Select value={formData.tipi} onValueChange={(value) => setFormData({...formData, tipi: value})}>
-                  <SelectTrigger data-testid="borxh-tipi-select" className="bg-zinc-800 border-zinc-700 text-white">
+                  <SelectTrigger data-testid="borxh-tipi-select" className="bg-gray-50 border-gray-300 text-gray-900">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-zinc-800 border-zinc-700 text-white">
+                  <SelectContent className="bg-gray-50 border-gray-300 text-gray-900">
                     <SelectItem value="CashPlus">CashPlus</SelectItem>
                     <SelectItem value="RBKO">RBKO</SelectItem>
                     <SelectItem value="Tjera">Tjera</SelectItem>
@@ -200,8 +200,8 @@ export const BorxhePage = () => {
                   <h3 className="text-xl font-bold">{borxh.emri}</h3>
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={() => handleEdit(borxh)} data-testid={`edit-borxh-${borxh.id}`} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
-                    <Pencil size={16} className="text-zinc-400" />
+                  <button onClick={() => handleEdit(borxh)} data-testid={`edit-borxh-${borxh.id}`} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <Pencil size={16} className="text-gray-600" />
                   </button>
                   <button onClick={() => handleDelete(borxh.id)} data-testid={`delete-borxh-${borxh.id}`} className="p-2 hover:bg-red-500/10 rounded-lg transition-colors">
                     <Trash2 size={16} className="text-red-400" />
@@ -211,29 +211,29 @@ export const BorxhePage = () => {
 
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-zinc-400">Shuma Totale</span>
+                  <span className="text-gray-600">Shuma Totale</span>
                   <span className="number-display font-semibold">{borxh.shuma_totale.toFixed(2)}€</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-zinc-400">Shuma Paguar</span>
+                  <span className="text-gray-600">Shuma Paguar</span>
                   <span className="number-display font-semibold text-[#10b981]">{borxh.shuma_paguar.toFixed(2)}€</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-zinc-400">Shuma Mbetur</span>
+                  <span className="text-gray-600">Shuma Mbetur</span>
                   <span className="number-display font-semibold text-[#f43f5e]">{borxh.shuma_mbetur.toFixed(2)}€</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-zinc-400">Data e Këstit</span>
+                  <span className="text-gray-600">Data e Këstit</span>
                   <span className="font-medium">{borxh.data_kestit}</span>
                 </div>
               </div>
 
               <div>
-                <div className="flex justify-between text-xs text-zinc-400 mb-2">
+                <div className="flex justify-between text-xs text-gray-600 mb-2">
                   <span>Progress</span>
                   <span>{progress.toFixed(1)}%</span>
                 </div>
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <div className="h-2 bg-gray-50 rounded-full overflow-hidden">
                   <div 
                     className="h-full transition-all duration-500 rounded-full"
                     style={{ width: `${progress}%`, background: color }}
@@ -247,7 +247,7 @@ export const BorxhePage = () => {
 
       {borxhe.length === 0 && (
         <div className="glass rounded-xl p-12 text-center">
-          <p className="text-zinc-400">Nuk ka borxhe të regjistruara</p>
+          <p className="text-gray-600">Nuk ka borxhe të regjistruara</p>
         </div>
       )}
     </div>
