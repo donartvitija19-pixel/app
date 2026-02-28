@@ -326,16 +326,22 @@ async def register(user_data: UserCreate, current_user: User = Depends(require_a
     if existing:
         raise HTTPException(status_code=400, detail="Email-i ekziston tashmë")
     
-    user_dict = user_data.model_dump()
-    user_dict['password_hash'] = hash_password(user_data.password)
-    del user_dict['password']
-    
-    user = User(**user_dict)
-    doc = user.model_dump()
-    doc['created_at'] = doc['created_at'].isoformat()
+    # Create the document to insert with password_hash
+    doc = {
+        "id": str(uuid.uuid4()),
+        "email": user_data.email,
+        "emri": user_data.emri,
+        "mbiemri": user_data.mbiemri,
+        "role": user_data.role,
+        "password_hash": hash_password(user_data.password),
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
     
     await db.users.insert_one(doc)
-    return user
+    
+    # Return user without password_hash
+    user_data_clean = {k: v for k, v in doc.items() if k not in ['_id', 'password_hash']}
+    return User(**user_data_clean)
 
 @api_router.post("/auth/login", response_model=TokenResponse)
 async def login(credentials: UserLogin):
