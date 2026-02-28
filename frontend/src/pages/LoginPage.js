@@ -30,19 +30,19 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: '#09090b' }}>
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: '#f8f9fa' }}>
       <div className="w-full max-w-md">
         <div className="glass rounded-2xl p-8 space-y-6">
           <div className="text-center space-y-2">
             <h1 className="text-4xl font-bold" style={{ fontFamily: 'Manrope, sans-serif', color: '#6366f1' }}>
               AVALANT
             </h1>
-            <p className="text-lg text-zinc-400">Manager</p>
+            <p className="text-lg text-gray-600">Manager</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-zinc-300">Email</Label>
+              <Label htmlFor="email" className="text-gray-700">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -51,12 +51,12 @@ export const LoginPage = () => {
                 placeholder="email@example.com"
                 required
                 data-testid="login-email-input"
-                className="bg-zinc-900/50 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-[#6366f1] focus:ring-[#6366f1]"
+                className="bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:border-[#6366f1] focus:ring-[#6366f1]"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-zinc-300">Fjalëkalimi</Label>
+              <Label htmlFor="password" className="text-gray-700">Fjalëkalimi</Label>
               <Input
                 id="password"
                 type="password"
@@ -65,7 +65,7 @@ export const LoginPage = () => {
                 placeholder="••••••••"
                 required
                 data-testid="login-password-input"
-                className="bg-zinc-900/50 border-zinc-800 text-white placeholder:text-zinc-600 focus:border-[#6366f1] focus:ring-[#6366f1]"
+                className="bg-gray-50 border-gray-300 text-gray-900 placeholder:text-gray-400 focus:border-[#6366f1] focus:ring-[#6366f1]"
               />
             </div>
 
