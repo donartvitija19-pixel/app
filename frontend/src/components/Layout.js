@@ -30,7 +30,7 @@ const NavItem = ({ icon: Icon, label, path, onClick }) => {
       className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
         isActive 
           ? 'bg-[#6366f1] text-white' 
-          : 'text-zinc-400 hover:text-white hover:bg-white/5'
+          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
       }`}
     >
       <Icon size={20} />
