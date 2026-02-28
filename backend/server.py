@@ -539,7 +539,9 @@ async def export_shpenzime_csv(current_user: User = Depends(require_admin)):
 
 @api_router.post("/financa-ditore", response_model=FinancaDitore)
 async def create_financa_ditore(data: FinancaDitoreCreate, current_user: User = Depends(require_admin)):
-    gjendja = data.cash + data.banka + data.fb_ads
+    gjendja = (data.cash + data.banka + data.fb_ads + 
+               data.porosi_krijuar + data.porosi_ne_depo + data.porosi_ne_dergim + 
+               data.porosi_dorezuar + data.porosi_ne_pritje)
     financa = FinancaDitore(**data.model_dump(), gjendja_fund_dite=gjendja)
     doc = financa.model_dump()
     doc['created_at'] = doc['created_at'].isoformat()
