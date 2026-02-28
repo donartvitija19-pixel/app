@@ -46,8 +46,8 @@ export const Layout = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: '#09090b' }}>
-        <div className="text-white text-lg">Duke ngarkuar...</div>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#f8f9fa' }}>
+        <div className="text-gray-900 text-lg">Duke ngarkuar...</div>
       </div>
     );
   }
