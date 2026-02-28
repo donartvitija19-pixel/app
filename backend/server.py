@@ -603,7 +603,9 @@ async def get_financa_analytics(current_user: User = Depends(require_admin)):
 
 @api_router.put("/financa-ditore/{financa_id}", response_model=FinancaDitore)
 async def update_financa_ditore(financa_id: str, data: FinancaDitoreCreate, current_user: User = Depends(require_admin)):
-    gjendja = data.cash + data.banka + data.fb_ads
+    gjendja = (data.cash + data.banka + data.fb_ads + 
+               data.porosi_krijuar + data.porosi_ne_depo + data.porosi_ne_dergim + 
+               data.porosi_dorezuar + data.porosi_ne_pritje)
     update_data = data.model_dump()
     update_data['gjendja_fund_dite'] = gjendja
     
