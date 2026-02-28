@@ -10,12 +10,12 @@ const StatCard = ({ title, value, icon: Icon, color, suffix = '€' }) => (
   <div className="glass glass-hover rounded-xl p-6" data-testid={`stat-card-${title.toLowerCase().replace(/\s+/g, '-')}`}>
     <div className="flex items-start justify-between">
       <div>
-        <p className="text-sm text-zinc-400 mb-2">{title}</p>
+        <p className="text-sm text-gray-600 mb-2">{title}</p>
         <p className="text-3xl font-bold number-display" style={{ color }}>
           {value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{suffix}
         </p>
       </div>
-      <div className="p-3 rounded-xl" style={{ background: `${color}20` }}>
+      <div className="p-3 rounded-xl" style={{ background: `${color}15` }}>
         <Icon size={24} style={{ color }} />
       </div>
     </div>
@@ -45,18 +45,18 @@ export const DashboardPage = () => {
   };
 
   if (loading) {
-    return <div className="text-white">Duke ngarkuar...</div>;
+    return <div className="text-gray-900">Duke ngarkuar...</div>;
   }
 
   if (!data) {
-    return <div className="text-white">Nuk ka të dhëna</div>;
+    return <div className="text-gray-900">Nuk ka të dhëna</div>;
   }
 
   return (
     <div className="space-y-8" data-testid="dashboard-page">
       <div>
-        <h1 className="text-4xl font-bold mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>Dashboard</h1>
-        <p className="text-zinc-400">Përmbledhje e gjendjes financiare</p>
+        <h1 className="text-4xl font-bold mb-2 text-gray-900" style={{ fontFamily: 'Manrope, sans-serif' }}>Dashboard</h1>
+        <p className="text-gray-600">Përmbledhje e gjendjes financiare</p>
       </div>
 
       {/* Main Stats */}
@@ -91,20 +91,20 @@ export const DashboardPage = () => {
       {/* Monthly Expenses */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="glass rounded-xl p-6">
-          <p className="text-sm text-zinc-400 mb-2">Shpenzime Nafte (Muaj)</p>
-          <p className="text-2xl font-bold number-display text-yellow-400">
+          <p className="text-sm text-gray-600 mb-2">Shpenzime Nafte (Muaj)</p>
+          <p className="text-2xl font-bold number-display text-yellow-600">
             {data.shpenzime_nafte_muaj.toLocaleString('en-US', { minimumFractionDigits: 2 })}€
           </p>
         </div>
         <div className="glass rounded-xl p-6">
-          <p className="text-sm text-zinc-400 mb-2">Shpenzime Familjare (Muaj)</p>
-          <p className="text-2xl font-bold number-display text-blue-400">
+          <p className="text-sm text-gray-600 mb-2">Shpenzime Familjare (Muaj)</p>
+          <p className="text-2xl font-bold number-display text-blue-600">
             {data.shpenzime_familjare_muaj.toLocaleString('en-US', { minimumFractionDigits: 2 })}€
           </p>
         </div>
         <div className="glass rounded-xl p-6">
-          <p className="text-sm text-zinc-400 mb-2">Shpenzime të Papritura</p>
-          <p className="text-2xl font-bold number-display text-red-400">
+          <p className="text-sm text-gray-600 mb-2">Shpenzime të Papritura</p>
+          <p className="text-2xl font-bold number-display text-red-600">
             {data.shpenzime_papritur_count}
           </p>
         </div>
@@ -113,11 +113,11 @@ export const DashboardPage = () => {
       {/* Bank Accounts */}
       {data.banka_accounts && data.banka_accounts.length > 0 && (
         <div>
-          <h2 className="text-2xl font-bold mb-4" style={{ fontFamily: 'Manrope, sans-serif' }}>Llogaritë Bankare</h2>
+          <h2 className="text-2xl font-bold mb-4 text-gray-900" style={{ fontFamily: 'Manrope, sans-serif' }}>Llogaritë Bankare</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {data.banka_accounts.map((account) => (
               <div key={account.id} className="glass rounded-xl p-6">
-                <p className="text-sm text-zinc-400 mb-2">{account.emri_bankes}</p>
+                <p className="text-sm text-gray-600 mb-2">{account.emri_bankes}</p>
                 <p className="text-2xl font-bold number-display text-[#6366f1]">
                   {account.bilanci.toLocaleString('en-US', { minimumFractionDigits: 2 })}€
                 </p>
@@ -130,26 +130,26 @@ export const DashboardPage = () => {
       {/* Recent Transactions */}
       {data.recent_transactions && data.recent_transactions.length > 0 && (
         <div>
-          <h2 className="text-2xl font-bold mb-4" style={{ fontFamily: 'Manrope, sans-serif' }}>Transaksionet e Fundit</h2>
+          <h2 className="text-2xl font-bold mb-4 text-gray-900" style={{ fontFamily: 'Manrope, sans-serif' }}>Transaksionet e Fundit</h2>
           <div className="glass rounded-xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-white/5 border-b border-white/10">
+                <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="text-left p-4 text-sm font-semibold text-zinc-300">Data</th>
-                    <th className="text-right p-4 text-sm font-semibold text-zinc-300">Cash</th>
-                    <th className="text-right p-4 text-sm font-semibold text-zinc-300">Bankë</th>
-                    <th className="text-right p-4 text-sm font-semibold text-zinc-300">FB Ads</th>
-                    <th className="text-right p-4 text-sm font-semibold text-zinc-300">Gjendja</th>
+                    <th className="text-left p-4 text-sm font-semibold text-gray-700">Data</th>
+                    <th className="text-right p-4 text-sm font-semibold text-gray-700">Cash</th>
+                    <th className="text-right p-4 text-sm font-semibold text-gray-700">Bankë</th>
+                    <th className="text-right p-4 text-sm font-semibold text-gray-700">FB Ads</th>
+                    <th className="text-right p-4 text-sm font-semibold text-gray-700">Gjendja</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.recent_transactions.map((trans, idx) => (
-                    <tr key={idx} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                      <td className="p-4 text-white">{trans.data}</td>
-                      <td className="p-4 text-right number-display text-zinc-300">{trans.cash.toFixed(2)}€</td>
-                      <td className="p-4 text-right number-display text-zinc-300">{trans.banka.toFixed(2)}€</td>
-                      <td className="p-4 text-right number-display text-zinc-300">{trans.fb_ads.toFixed(2)}€</td>
+                    <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                      <td className="p-4 text-gray-900">{trans.data}</td>
+                      <td className="p-4 text-right number-display text-gray-700">{trans.cash.toFixed(2)}€</td>
+                      <td className="p-4 text-right number-display text-gray-700">{trans.banka.toFixed(2)}€</td>
+                      <td className="p-4 text-right number-display text-gray-700">{trans.fb_ads.toFixed(2)}€</td>
                       <td className="p-4 text-right number-display font-bold text-[#6366f1]">{trans.gjendja_fund_dite.toFixed(2)}€</td>
                     </tr>
                   ))}
