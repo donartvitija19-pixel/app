@@ -15,12 +15,10 @@ import { StockPage } from './pages/StockPage';
 import { BankaAccountsPage } from './pages/BankaAccountsPage';
 import { KursimePage } from './pages/KursimePage';
 import { KontabilistetPage } from './pages/KontabilistetPage';
-
-// Placeholder components for remaining pages
-const FaturaPage = () => <div className="text-white text-2xl p-8">Fatura Page - Coming Soon</div>;
-const DeklarimetPage = () => <div className="text-white text-2xl p-8">Deklarimet & Pagat Page - Coming Soon</div>;
-const CRMPage = () => <div className="text-white text-2xl p-8">CRM Page - Coming Soon</div>;
-const CRMCPPPage = () => <div className="text-white text-2xl p-8">CRM-CPP Page - Coming Soon</div>;
+import { FaturaPage } from './pages/FaturaPage';
+import { DeklarimetPage } from './pages/DeklarimetPage';
+import { CRMPage } from './pages/CRMPage';
+import { CRMCPPPage } from './pages/CRMCPPPage';
 
 function App() {
   return (
