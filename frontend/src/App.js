@@ -41,6 +41,7 @@ function App() {
             <Route path="kursime" element={<KursimePage />} />
             <Route path="kontabilistet" element={<KontabilistetPage />} />
             <Route path="banka-accounts" element={<BankaAccountsPage />} />
+            <Route path="settings" element={<SettingsPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
