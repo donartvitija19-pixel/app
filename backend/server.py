@@ -14,10 +14,11 @@ from pydantic import BaseModel, Field, ConfigDict, EmailStr
 import uuid
 from io import BytesIO
 import openpyxl
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse
 import json
 
 ROOT_DIR = Path(__file__).parent
+FRONTEND_BUILD_DIR = ROOT_DIR.parent / 'frontend' / 'build'
 load_dotenv(ROOT_DIR / '.env')
 
 mongo_url = os.environ['MONGO_URL']
@@ -1073,7 +1074,40 @@ async def export_full_backup(current_user: User = Depends(require_admin)):
         headers={"Content-Disposition": "attachment; filename=avalant_backup.json"}
     )
 
+
 app.include_router(api_router)
+
+
+def _frontend_file_path(path: str) -> Path:
+    requested = (FRONTEND_BUILD_DIR / path).resolve()
+    if FRONTEND_BUILD_DIR.resolve() not in requested.parents and requested != FRONTEND_BUILD_DIR.resolve():
+        raise HTTPException(status_code=404, detail="Not found")
+    return requested
+
+
+@app.get("/", include_in_schema=False)
+async def serve_frontend_root():
+    index_file = FRONTEND_BUILD_DIR / "index.html"
+    if index_file.exists():
+        return FileResponse(index_file)
+    raise HTTPException(status_code=404, detail="Frontend build not found")
+
+
+@app.get("/{full_path:path}", include_in_schema=False)
+async def serve_frontend(full_path: str):
+    if full_path.startswith("api/"):
+        raise HTTPException(status_code=404, detail="Not found")
+
+    target = _frontend_file_path(full_path)
+    if target.is_file():
+        return FileResponse(target)
+
+    index_file = FRONTEND_BUILD_DIR / "index.html"
+    if index_file.exists():
+        return FileResponse(index_file)
+
+    raise HTTPException(status_code=404, detail="Frontend build not found")
+
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
