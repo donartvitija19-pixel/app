@@ -25,15 +25,20 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 app = FastAPI()
-# --- PASTE THIS BLOCK STARTING HERE ---
+
+# Make sure there is NO slash at the end of this URL
+origins = [
+    "http://ks08gwgcskso4csk4sg0c80w.46.225.142.149.sslip.io",
+    "http://localhost:3000"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://ks08gwgcskso4csk4sg0c80w.46.225.142.149.sslip.io"], 
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"], # Explicitly allow OPTIONS
+    allow_headers=["Content-Type", "Authorization", "Accept"], # Standard headers for login
 )
-# --- PASTE THIS BLOCK ENDING HERE ---
 
 @app.post("/api/auth/login")
 async def login():
