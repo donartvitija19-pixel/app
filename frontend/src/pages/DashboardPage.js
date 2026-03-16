@@ -3,8 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { TrendingUp, TrendingDown, AlertTriangle, Wallet } from 'lucide-react';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+import { API } from '../lib/api';
 
 const StatCard = ({ title, value, icon: Icon, color, suffix = '€' }) => (
   <div className="glass glass-hover rounded-xl p-6" data-testid={`stat-card-${title.toLowerCase().replace(/\s+/g, '-')}`}>

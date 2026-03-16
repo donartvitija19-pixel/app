@@ -9,8 +9,7 @@ import { toast } from 'sonner';
 import { Plus, Pencil, Trash2, PiggyBank, TrendingUp, X } from 'lucide-react';
 import { Progress } from '../components/ui/progress';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+import { API } from '../lib/api';
 
 export const KursimePage = () => {
   const { getAuthHeader } = useAuth();
