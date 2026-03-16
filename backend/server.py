@@ -26,23 +26,28 @@ db = client[os.environ['DB_NAME']]
 
 app = FastAPI()
 
-# Make sure there is NO slash at the end of this URL
-origins = [
-    "http://ks08gwgcskso4csk4sg0c80w.46.225.142.149.sslip.io",
-    "http://localhost:3000"
-]
+# CORS can be customized through CORS_ORIGINS (comma-separated) and
+# CORS_ORIGIN_REGEX (regex pattern).
+def _parse_cors_origins() -> list[str]:
+    configured = os.environ.get("CORS_ORIGINS")
+    if configured:
+        return [origin.strip() for origin in configured.split(",") if origin.strip()]
+
+    return [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=_parse_cors_origins(),
+    allow_origin_regex=os.environ.get("CORS_ORIGIN_REGEX", r"https?://.*\.sslip\.io"),
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"], # Explicitly allow OPTIONS
-    allow_headers=["Content-Type", "Authorization", "Accept"], # Standard headers for login
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-@app.post("/api/auth/login")
-async def login():
-    
 api_router = APIRouter(prefix="/api")
 
 SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'avalant-secret-key-2024')
@@ -1069,14 +1074,6 @@ async def export_full_backup(current_user: User = Depends(require_admin)):
     )
 
 app.include_router(api_router)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
