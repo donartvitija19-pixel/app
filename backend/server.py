@@ -15,17 +15,6 @@ import uuid
 from io import BytesIO
 import openpyxl
 from fastapi.responses import StreamingResponse
-
-from fastapi.middleware.cors import CORSMiddleware
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"], # This allows ALL origins to talk to the backend
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 import json
 
 ROOT_DIR = Path(__file__).parent
@@ -36,6 +25,19 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 app = FastAPI()
+# --- PASTE THIS BLOCK STARTING HERE ---
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://ks08gwgcskso4csk4sg0c80w.46.225.142.149.sslip.io"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# --- PASTE THIS BLOCK ENDING HERE ---
+
+@app.post("/api/auth/login")
+async def login():
+    
 api_router = APIRouter(prefix="/api")
 
 SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'avalant-secret-key-2024')
