@@ -42,7 +42,7 @@ def _parse_cors_origins() -> list[str]:
 app.add_middleware(
     CORSMiddleware,
     allow_origins=_parse_cors_origins(),
-    allow_origin_regex=os.environ.get("CORS_ORIGIN_REGEX", r"https?://.*\.sslip\.io"),
+    allow_origin_regex=os.environ.get("CORS_ORIGIN_REGEX", r"https?://.*\.sslip\.io(:\d+)?"),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
