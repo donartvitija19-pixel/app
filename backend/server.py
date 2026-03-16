@@ -14,10 +14,11 @@ from pydantic import BaseModel, Field, ConfigDict, EmailStr
 import uuid
 from io import BytesIO
 import openpyxl
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse
 import json
 
 ROOT_DIR = Path(__file__).parent
+FRONTEND_BUILD_DIR = ROOT_DIR.parent / 'frontend' / 'build'
 load_dotenv(ROOT_DIR / '.env')
 
 mongo_url = os.environ['MONGO_URL']
@@ -26,23 +27,28 @@ db = client[os.environ['DB_NAME']]
 
 app = FastAPI()
 
-# Make sure there is NO slash at the end of this URL
-origins = [
-    "http://ks08gwgcskso4csk4sg0c80w.46.225.142.149.sslip.io",
-    "http://localhost:3000"
-]
+# CORS can be customized through CORS_ORIGINS (comma-separated) and
+# CORS_ORIGIN_REGEX (regex pattern).
+def _parse_cors_origins() -> list[str]:
+    configured = os.environ.get("CORS_ORIGINS")
+    if configured:
+        return [origin.strip() for origin in configured.split(",") if origin.strip()]
+
+    return [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=_parse_cors_origins(),
+    allow_origin_regex=os.environ.get("CORS_ORIGIN_REGEX", r"https?://.*\.sslip\.io(:\d+)?"),
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"], # Explicitly allow OPTIONS
-    allow_headers=["Content-Type", "Authorization", "Accept"], # Standard headers for login
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-@app.post("/api/auth/login")
-async def login():
-    
 api_router = APIRouter(prefix="/api")
 
 SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'avalant-secret-key-2024')
@@ -1068,15 +1074,40 @@ async def export_full_backup(current_user: User = Depends(require_admin)):
         headers={"Content-Disposition": "attachment; filename=avalant_backup.json"}
     )
 
+
 app.include_router(api_router)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
+def _frontend_file_path(path: str) -> Path:
+    requested = (FRONTEND_BUILD_DIR / path).resolve()
+    if FRONTEND_BUILD_DIR.resolve() not in requested.parents and requested != FRONTEND_BUILD_DIR.resolve():
+        raise HTTPException(status_code=404, detail="Not found")
+    return requested
+
+
+@app.get("/", include_in_schema=False)
+async def serve_frontend_root():
+    index_file = FRONTEND_BUILD_DIR / "index.html"
+    if index_file.exists():
+        return FileResponse(index_file)
+    raise HTTPException(status_code=404, detail="Frontend build not found")
+
+
+@app.get("/{full_path:path}", include_in_schema=False)
+async def serve_frontend(full_path: str):
+    if full_path.startswith("api/"):
+        raise HTTPException(status_code=404, detail="Not found")
+
+    target = _frontend_file_path(full_path)
+    if target.is_file():
+        return FileResponse(target)
+
+    index_file = FRONTEND_BUILD_DIR / "index.html"
+    if index_file.exists():
+        return FileResponse(index_file)
+
+    raise HTTPException(status_code=404, detail="Frontend build not found")
+
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
