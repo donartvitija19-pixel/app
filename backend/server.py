@@ -20,10 +20,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://ks08gwgcskso4csk4sg0c80w.46.225.142.149.sslip.io", # Your Frontend
-        "http://localhost:3000",                                   # Local testing
-    ],
+    allow_origins=["*"], # This allows ALL origins to talk to the backend
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
