@@ -36,6 +36,8 @@ If needed, you can still run frontend and backend separately during development.
 ### Note about npm lockfile
 
 The Docker build supports repositories with or without `frontend/package-lock.json`:
+- if lockfile exists, it uses `npm ci --legacy-peer-deps`;
+- otherwise it falls back to `npm install --legacy-peer-deps`.
 - if lockfile exists, it uses `npm ci`;
 - otherwise it falls back to `npm install`.
 
