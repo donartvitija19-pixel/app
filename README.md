@@ -33,3 +33,9 @@ Then open `http://localhost:8000`.
 ## Development (split mode)
 
 If needed, you can still run frontend and backend separately during development.
+### Note about npm lockfile
+
+The Docker build supports repositories with or without `frontend/package-lock.json`:
+- if lockfile exists, it uses `npm ci`;
+- otherwise it falls back to `npm install`.
+
